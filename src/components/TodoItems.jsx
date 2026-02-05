@@ -6,7 +6,7 @@ const TodoItems = ({todo, remove, onToggle}) => {
       <div className='flex flex-1 items-center cursor-pointer' onClick={onToggle}>
         <img
           className="w-7"
-          src={todo.completed ? "/tick.png" : "/not_tick.png"}
+          src={`${import.meta.env.BASE_URL}${todo.completed ? "tick.png" : "not_tick.png"}`}
           alt="status"
         />
            <p
@@ -18,7 +18,7 @@ const TodoItems = ({todo, remove, onToggle}) => {
         </p>
       </div>
 
-      <img className='w-3.5 cursor-pointer' src="/delete.png" alt="delete-icon" onClick={remove}/>
+      <img className='w-3.5 cursor-pointer' src={`${import.meta.env.BASE_URL}delete.png`} alt="delete-icon" onClick={remove}/>
     </div>
   )
 } 
