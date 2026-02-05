@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoItems from "./TodoItems";
 
 const Todo = () => {
   const [text, setText] = useState("");
-  const [todos, setTodos] = useState([]);
+
+const [todos, setTodos] = useState(() => {
+    try {
+      const saved = localStorage.getItem("todos");
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
+    useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
 const add = () => {
   if (text.trim() === "") return;
