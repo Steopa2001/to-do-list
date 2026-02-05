@@ -5,15 +5,25 @@ const Todo = () => {
   const [text, setText] = useState("");
   const [todos, setTodos] = useState([]);
 
-  const add = () => {
-    if (text.trim() === "") return;
-    setTodos([...todos, text]);
-    setText("");
-  };
+const add = () => {
+  if (text.trim() === "") return;
+  setTodos([...todos, { text: text.trim(), completed: false }]);
+  setText("");
+};
 
-  const removeTodo = (indexToRemove) => {
-    setTodos(todos.filter((_, index) => index !== indexToRemove));
-  };
+const removeTodo = (indexToRemove) => {
+  setTodos((prev) => prev.filter((_, index) => index !== indexToRemove));
+};
+
+
+const toggleTodo = (indexToToggle) => {
+  setTodos((prev) =>
+    prev.map((todo, index) =>
+      index === indexToToggle ? { ...todo, completed: !todo.completed } : todo
+    )
+  );
+};
+
 
   return (
     <div className="bg-slate-300 place-self-center w-11/12 max-w-md flex flex-col p-7 min-h-137.5 rounded-xl">
@@ -31,6 +41,7 @@ const Todo = () => {
           onChange={(e) => setText(e.target.value)}
           type="text"
           placeholder="Add your task..."
+          onKeyDown={(e) => e.key === "Enter" && add()}
         />
         <button
           onClick={add}
@@ -43,7 +54,7 @@ const Todo = () => {
       {/* TODO LIST */}
       <div>
         {todos.map((todo, index) => (
-          <TodoItems key={index} text={todo}  remove={() => removeTodo(index)}/>
+          <TodoItems key={index}  todo={todo}  remove={() => removeTodo(index)}  onToggle={() => toggleTodo(index)}/>
         ))}
       </div>
     </div>
