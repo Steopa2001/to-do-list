@@ -7,9 +7,12 @@ const Todo = () => {
 
   const add = () => {
     if (text.trim() === "") return;
-
     setTodos([...todos, text]);
     setText("");
+  };
+
+  const removeTodo = (indexToRemove) => {
+    setTodos(todos.filter((_, index) => index !== indexToRemove));
   };
 
   return (
@@ -29,15 +32,18 @@ const Todo = () => {
           type="text"
           placeholder="Add your task..."
         />
-        <button onClick={add} className="cursor-pointer border-none rounded-full bg-orange-600 w-28 h-14 text-white text-lg font-medium">
+        <button
+          onClick={add}
+          className="cursor-pointer border-none rounded-full bg-orange-600 w-28 h-14 text-white text-lg font-medium"
+        >
           ADD +
         </button>
       </div>
 
-    {/* TODO LIST */}
+      {/* TODO LIST */}
       <div>
         {todos.map((todo, index) => (
-          <TodoItems key={index} text={todo} />
+          <TodoItems key={index} text={todo}  remove={() => removeTodo(index)}/>
         ))}
       </div>
     </div>
