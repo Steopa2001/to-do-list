@@ -36,6 +36,8 @@ const showToast = (message, type) => {
   };
 
   const removeTodo = (indexToRemove) => {
+     const ok = window.confirm("Vuoi eliminare questa task?");
+  if (!ok) return;
     setTodos((prev) => prev.filter((_, index) => index !== indexToRemove));
     showToast("Task eliminata", "error");
   };
