@@ -32,14 +32,14 @@ const showToast = (message, type) => {
     if (text.trim() === "") return;
     setTodos([...todos, { text: text.trim(), completed: false }]);
     setText("");
-    showToast("Task aggiunta", "success");
+    showToast("Task added", "success");
   };
 
   const removeTodo = (indexToRemove) => {
      const ok = window.confirm("Vuoi eliminare questa task?");
   if (!ok) return;
     setTodos((prev) => prev.filter((_, index) => index !== indexToRemove));
-    showToast("Task eliminata", "error");
+    showToast("Task deleted", "error");
   };
 
   const toggleTodo = (indexToToggle) => {
