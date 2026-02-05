@@ -26,7 +26,7 @@ const toggleTodo = (indexToToggle) => {
 
 
   return (
-    <div className="bg-slate-300 place-self-center w-11/12 max-w-md flex flex-col p-7 min-h-137.5 rounded-xl">
+    <div className="bg-white place-self-center w-11/12 max-w-md flex flex-col p-7 min-h-137.5 rounded-xl">
       {/* TITLE and IMAGE */}
       <div className="flex items-center mt-7 gap-2">
         <img className="w-8" src={`${import.meta.env.BASE_URL}todo_icon.png`} alt="icon-todo" />
